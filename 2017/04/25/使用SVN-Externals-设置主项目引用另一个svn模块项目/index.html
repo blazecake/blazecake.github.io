@@ -11,23 +11,23 @@
     
 
     
-    <meta name="description" content="android project主项目引用module项目，module被多个项目使用，希望module单独作为项目进行版本管理。 使用环境：Android studio 2.3.1，SVN 1.9.4，project主项目和module项目用SVN分别推到远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点">
-<meta name="keywords" content="android">
+    <meta name="description" content="使用场景：project主项目引用lib项目，lib被多个项目使用，希望lib单独作为项目进行版本管理。 使用环境：SVN 1.9.4project主项目和lib项目分别有SVN远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点击new按钮选择Extenals打开浏览 四、点击new打开新建窗口 五、输入">
+<meta name="keywords" content="Tools">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SVN Externals 设置主项目引用另一个svn模块项目">
 <meta property="og:url" content="http://blazecake.github.io/2017/04/25/使用SVN-Externals-设置主项目引用另一个svn模块项目/index.html">
 <meta property="og:site_name" content="MZ Blog">
-<meta property="og:description" content="android project主项目引用module项目，module被多个项目使用，希望module单独作为项目进行版本管理。 使用环境：Android studio 2.3.1，SVN 1.9.4，project主项目和module项目用SVN分别推到远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点">
+<meta property="og:description" content="使用场景：project主项目引用lib项目，lib被多个项目使用，希望lib单独作为项目进行版本管理。 使用环境：SVN 1.9.4project主项目和lib项目分别有SVN远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点击new按钮选择Extenals打开浏览 四、点击new打开新建窗口 五、输入">
 <meta property="og:image" content="http://blazecake.github.io/img/svn1.png">
 <meta property="og:image" content="http://blazecake.github.io/img/svn2.png">
 <meta property="og:image" content="http://blazecake.github.io/img/svn3.png">
 <meta property="og:image" content="http://blazecake.github.io/img/svn4.png">
 <meta property="og:image" content="http://blazecake.github.io/img/svn5.png">
 <meta property="og:image" content="http://blazecake.github.io/img/svn6.png">
-<meta property="og:updated_time" content="2017-04-25T07:06:24.759Z">
+<meta property="og:updated_time" content="2017-04-25T08:36:50.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用SVN Externals 设置主项目引用另一个svn模块项目">
-<meta name="twitter:description" content="android project主项目引用module项目，module被多个项目使用，希望module单独作为项目进行版本管理。 使用环境：Android studio 2.3.1，SVN 1.9.4，project主项目和module项目用SVN分别推到远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点">
+<meta name="twitter:description" content="使用场景：project主项目引用lib项目，lib被多个项目使用，希望lib单独作为项目进行版本管理。 使用环境：SVN 1.9.4project主项目和lib项目分别有SVN远程仓库。 一、在任意文件夹中右键打开browser 二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用 三、点击new按钮选择Extenals打开浏览 四、点击new打开新建窗口 五、输入">
 <meta name="twitter:image" content="http://blazecake.github.io/img/svn1.png">
 
     
@@ -101,8 +101,8 @@
 </header>
 	<div class="article-content">
 		
-		<p>android project主项目引用module项目，module被多个项目使用，希望module单独作为项目进行版本管理。</p>
-<p>使用环境：Android studio 2.3.1，SVN 1.9.4，<br>project主项目和module项目用SVN分别推到远程仓库。</p>
+		<p>使用场景：project主项目引用lib项目，lib被多个项目使用，希望lib单独作为项目进行版本管理。</p>
+<p>使用环境：SVN 1.9.4<br>project主项目和lib项目分别有SVN远程仓库。</p>
 <p>一、在任意文件夹中右键打开browser<br><img src="/img/svn1.png" alt=""></p>
 <p>二、在主项目上右击，打开properties，选择哪个目录会在该目录下建子模块引用<br><img src="/img/svn2.png" alt=""></p>
 <p>三、点击new按钮选择Extenals打开浏览<br><img src="/img/svn3.png" alt=""></p>
@@ -110,6 +110,7 @@
 <p>五、输入模块路径名称，会用此路径建文件夹；选择module模块仓库地址，会将该地址下的文件拷贝至local path文件夹下。<br><img src="/img/svn5.png" alt=""></p>
 <p>六、点击OK，提交日志信息后刷新，在选择的文件夹下会出现建立的模块本地路径，如图：<br><img src="/img/svn6.png" alt=""></p>
 <p>当SVN checkout/update主项目时，模块项目也会从远程仓库同时更新到本地；<br>当本地修改了主项目、模块项目代码并都提交时，修改会同时更新到两个远程SVN仓库。</p>
+<p>另：使用git管理的项目可参考：<a href="http://git.oschina.net/progit/6-Git-%E5%B7%A5%E5%85%B7.html#6.6-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="external">http://git.oschina.net/progit/6-Git-%E5%B7%A5%E5%85%B7.html#6.6-%E5%AD%90%E6%A8%A1%E5%9D%97</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -118,7 +119,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/android/">android</a>
+  <span></span> <a href="/tags/Tools/">Tools</a>
   </div>
 
 </div>
@@ -183,7 +184,11 @@
 			
 		
 			
-				<li><a href="/tags/android/" title="android">android<sup>3</sup></a></li>
+				<li><a href="/tags/android/" title="android">android<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Tools/" title="Tools">Tools<sup>1</sup></a></li>
 			
 		
 		</ul>
