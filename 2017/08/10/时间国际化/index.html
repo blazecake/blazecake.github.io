@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://blazecake.github.io/2017/08/10/时间国际化/index.html">
 <meta property="og:site_name" content="MZ Blog">
 <meta property="og:description" content="由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。 1、使用long类型时间国际化一般有">
-<meta property="og:updated_time" content="2017-08-10T10:23:03.387Z">
+<meta property="og:updated_time" content="2017-08-10T10:28:33.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间国际化">
 <meta name="twitter:description" content="由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。 1、使用long类型时间国际化一般有">
@@ -95,7 +95,7 @@
 	<div class="article-content">
 		
 		<p>由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。</p>
-<h3 id="1、使用long类型"><a href="#1、使用long类型" class="headerlink" title="1、使用long类型"></a>1、使用long类型</h3><p>时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01 00:00:00 GMT（January 1, 1970, 00:00:00 GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。<br>Java将时间戳转换为本地时区时间：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Date(System.currentTimeMillis())</div><div class="line">calendar.setTimeInMillis(System.currentTimeMillis())</div></pre></td></tr></table></figure></p>
+<h3 id="1、使用long类型"><a href="#1、使用long类型" class="headerlink" title="1、使用long类型"></a>1、使用long类型</h3><p>时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对于某个时间点1970-01-01 00:00:00 GMT（January 1, 1970, 00:00:00 GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。<br>Java将时间戳转换为本地时区时间：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Date(System.currentTimeMillis())</div><div class="line">calendar.setTimeInMillis(System.currentTimeMillis())</div></pre></td></tr></table></figure></p>
 <p>Date有两个变量：fastTime表示的是时间戳，与时区无关；cdate表示的是GMT时间，与时区有关，其时区默认跟随系统设置的时区<br>Calendar主要有time和field[]：time表示时间戳，field表示时间的各个值如年、月、日。</p>
 <p>获取时间戳：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Date().getTime()</div><div class="line">calendar.getTimeInMillis();</div></pre></td></tr></table></figure></p>
 <h3 id="2、使用String类型"><a href="#2、使用String类型" class="headerlink" title="2、使用String类型"></a>2、使用String类型</h3><p>如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10 11:30:00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。</p>
@@ -103,8 +103,6 @@
 <h3 id="3、String类型日期优化"><a href="#3、String类型日期优化" class="headerlink" title="3、String类型日期优化"></a>3、String类型日期优化</h3><p>上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Instant.now(); <span class="comment">//标准的获取当前UTC时间</span></div></pre></td></tr></table></figure></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat();</div><div class="line">sdf.setTimeZone(<span class="keyword">new</span> SimpleTimeZone(SimpleTimeZone.UTC_TIME, <span class="string">"UTC"</span>));</div><div class="line">sdf.format(date); <span class="comment">//转换为UTC时间</span></div></pre></td></tr></table></figure>
 <p>注意只能获取字符串形式的UTC时间，通过sdf.parse()是将字符串类型的UTC时间转换成Date类型本地时区的时间，因为其他类型的时间转换成Date都是通过new Date()形式转换，Date没有时区设置的方法，默认都是系统设置的时区，Date一般也只能在当前运行环境使用，无法传输到其他设备，因而你看到的Date永远是系统设置的时区时间。时间在请求提交或响应参数传递时适合传输字符串或者long类型。</p>
-<p>SimpleDateFormat的parse()方法，调用了Calendar的getTime()</p>
-<p>Calendar的getTime()方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Calendar calendar = Calendar.getInstance(<span class="keyword">new</span> SimpleTimeZone(SimpleTimeZone.UTC_TIME, <span class="string">"UTC"</span>));</div><div class="line">calendar.get(Calendar.HOUR_OF_DAY) <span class="comment">//获取UTC时间的小时</span></div></pre></td></tr></table></figure>
 <p>注意通过calendar.getTime()获取的是本地时区时间，其内部实现return new Date(getTimeInMillis());依旧使用了系统指定时区。</p>
   
