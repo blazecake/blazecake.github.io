@@ -1,0 +1,490 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>时间国际化 | MZ Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="MZ">
+    
+
+    
+    <meta name="description" content="由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。 1、时间国际化一般有很多中方法，对于">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间国际化">
+<meta property="og:url" content="http://blazecake.github.io/2017/08/10/时间国际化/index.html">
+<meta property="og:site_name" content="MZ Blog">
+<meta property="og:description" content="由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。 1、时间国际化一般有很多中方法，对于">
+<meta property="og:updated_time" content="2017-08-10T10:20:31.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="时间国际化">
+<meta name="twitter:description" content="由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。 1、时间国际化一般有很多中方法，对于">
+
+    
+    <link rel="alternative" href="/atom.xml" title="MZ Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/logo.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/logo.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="MZ Blog" title="MZ Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="MZ Blog">MZ Blog</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:blazecake.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/10/时间国际化/" title="时间国际化" itemprop="url">时间国际化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="MZ" target="_blank" itemprop="author">MZ</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-10T10:16:03.000Z" itemprop="datePublished"> 发表于 2017-08-10</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>由于不同的时区时间不一样，以GMS时间字符串保存到服务器时，保存的是对应时区的时间，即当地时间。如果固定在一个时区还好，但是有的人跨时区访问服务器、就会出现时间错误。如在北京时间2017-08-10 11:00:00的时候发表了一个帖子。那么到纽约后还是显示的北京时间，而对纽约时间而言应该是2017-08-09-23:00:00，所以需要处理好时间适应国际化。</p>
+<h3 id="1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01-00-00-00-GMT（January-1-1970-00-00-00-GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。"><a href="#1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01-00-00-00-GMT（January-1-1970-00-00-00-GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。" class="headerlink" title="1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01 00:00:00 GMT（January 1, 1970, 00:00:00 GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。"></a>1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01 00:00:00 GMT（January 1, 1970, 00:00:00 GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。</h3><p>Java将时间戳转换为本地时区时间：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Date(System.currentTimeMillis())</div><div class="line">calendar.setTimeInMillis(System.currentTimeMillis())</div></pre></td></tr></table></figure></p>
+<p>Date有两个变量：fastTime表示的是时间戳，与时区无关；cdate表示的是GMT时间，与时区有关，其时区默认跟随系统设置的时区<br>Calendar主要有time和field[]：time表示时间戳，field表示时间的各个值如年、月、日。</p>
+<p>获取时间戳：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Date().getTime()</div><div class="line">calendar.getTimeInMillis();</div></pre></td></tr></table></figure></p>
+<h3 id="2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10-11-30-00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。"><a href="#2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10-11-30-00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。" class="headerlink" title="2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10 11:30:00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。"></a>2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10 11:30:00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。</h3><p>转换指定时区的java代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat();</div><div class="line">formatter.setTimeZone(TimeZone.getTimeZone(<span class="string">"GMT+8:00"</span>)); <span class="comment">//设置GMT东8区时区，即北京时间</span></div></pre></td></tr></table></figure></p>
+<h3 id="3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。"><a href="#3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。" class="headerlink" title="3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。"></a>3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Instant.now(); <span class="comment">//标准的获取当前UTC时间</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat();</div><div class="line">sdf.setTimeZone(<span class="keyword">new</span> SimpleTimeZone(SimpleTimeZone.UTC_TIME, <span class="string">"UTC"</span>));</div><div class="line">sdf.format(date); <span class="comment">//转换为UTC时间</span></div></pre></td></tr></table></figure>
+<p>注意只能获取字符串形式的UTC时间，通过sdf.parse()是将字符串类型的UTC时间转换成Date类型本地时区的时间，因为其他类型的时间转换成Date都是通过new Date()形式转换，Date没有时区设置的方法，默认都是系统设置的时区，Date一般也只能在当前运行环境使用，无法传输到其他设备，因而你看到的Date永远是系统设置的时区时间。时间在请求提交或响应参数传递时适合传输字符串或者long类型。</p>
+<p>SimpleDateFormat的parse()方法，调用了Calendar的getTime()</p>
+<p>Calendar的getTime()方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Calendar calendar = Calendar.getInstance(<span class="keyword">new</span> SimpleTimeZone(SimpleTimeZone.UTC_TIME, <span class="string">"UTC"</span>));</div><div class="line">calendar.get(Calendar.HOUR_OF_DAY) <span class="comment">//获取UTC时间的小时</span></div></pre></td></tr></table></figure>
+<p>注意通过calendar.getTime()获取的是本地时区时间，其内部实现return new Date(getTimeInMillis());依旧使用了系统指定时区。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/android/">android</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://blazecake.github.io/2017/08/10/时间国际化/" data-title="时间国际化 | MZ Blog" data-tsina="3264880982" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/08/02/git管理SVN仓库/" title="git管理SVN仓库">
+  <strong>上一篇：</strong><br/>
+  <span>
+  git管理SVN仓库</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/08/10/时间国际化/" data-title="时间国际化" data-url="http://blazecake.github.io/2017/08/10/时间国际化/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01-00-00-00-GMT（January-1-1970-00-00-00-GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。"><span class="toc-number">1.</span> <span class="toc-text">1、时间国际化一般有很多中方法，对于没有时间格式要求的可以直接实用unix时间戳，unix时间戳是相对与某个时间点1970-01-01 00:00:00 GMT（January 1, 1970, 00:00:00 GMT）的持续时间时长，单位毫秒，unix时间戳与时区无关，不同时区的设备显示时将时间戳转换为本地时区的时间即可。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10-11-30-00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。"><span class="toc-number">2.</span> <span class="toc-text">2、如对时间格式有要求，需要传格式化的时间字符串如”2017-08-10 11:30:00”，则需要进行时区转换，任何时区的时间传输到服务器时可以让服务器将时间转换成服务器所在时区的时间，可以根据ip判断时区（设置跨时区代理会错误），或者客户端传时区参数。另一种方式是客户端将时区转换成服务器所在时区后提交（适合多服务器固定在同一个时区）。这种方式如果需要把时间传给客户端，则需要再次将时间转换成客户端所在时区的时间，所以比较麻烦。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。"><span class="toc-number">3.</span> <span class="toc-text">3、上面这种方式处理麻烦，有种更好的方式就是用UTC时间字符串，UTC时间使用的是0时区的时间。即将各时区的时间统一转成0时区的时间。</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/iOS/" title="iOS">iOS<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/android/" title="android">android<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Tools/" title="Tools">Tools<sup>2</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://a.codekk.com/" target="_blank" title="codeKK">codeKK</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://hukai.me/android-training-course-in-chinese/index.html" target="_blank" title="android-training">android-training</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stormzhang.com/posts.html" target="_blank" title="stormzhang&#39;s blog">stormzhang&#39;s blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.devtang.com/" target="_blank" title="唐巧的技术博客">唐巧的技术博客</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello , I&#39;m Week in ELEME Inc. <br/>
+			This is my blog, believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3264880982" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/blazecake" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:maozhou2@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="MZ">MZ</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"week"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-69906770-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
