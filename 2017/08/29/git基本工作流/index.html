@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>self关键字含义 | MZ Blog</title>
+    <title>git基本工作流 | MZ Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="MZ">
     
 
     
-    <meta name="description" content="self类似java中的this，this表示当前对象，但iOS中self即可表示对象，又可表示类1234567891011121314151617181920@implementation Student//在动态方法中使用self则表示当前方法的调用对象- (void)test &amp;#123;&amp;#125;- (void)test2 &amp;#123;    [Student test3]; //可调用">
-<meta name="keywords" content="iOS">
+    <meta name="description" content="1、本地创建仓库两种方式：新建项目初始化仓库，已有项目克隆到本地 #初始化git init #映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射git remote add origin https://github.com/blazecake/JavaTest.gitgit remote add myprivate git@gitlab.com:Chau/J">
+<meta name="keywords" content="Tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="self关键字含义">
-<meta property="og:url" content="http://blazecake.github.io/2015/11/12/self关键字含义/index.html">
+<meta property="og:title" content="git基本工作流">
+<meta property="og:url" content="http://blazecake.github.io/2017/08/29/git基本工作流/index.html">
 <meta property="og:site_name" content="MZ Blog">
-<meta property="og:description" content="self类似java中的this，this表示当前对象，但iOS中self即可表示对象，又可表示类1234567891011121314151617181920@implementation Student//在动态方法中使用self则表示当前方法的调用对象- (void)test &amp;#123;&amp;#125;- (void)test2 &amp;#123;    [Student test3]; //可调用">
-<meta property="og:updated_time" content="2017-04-25T02:04:07.502Z">
+<meta property="og:description" content="1、本地创建仓库两种方式：新建项目初始化仓库，已有项目克隆到本地 #初始化git init #映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射git remote add origin https://github.com/blazecake/JavaTest.gitgit remote add myprivate git@gitlab.com:Chau/J">
+<meta property="og:updated_time" content="2017-08-29T09:10:48.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="self关键字含义">
-<meta name="twitter:description" content="self类似java中的this，this表示当前对象，但iOS中self即可表示对象，又可表示类1234567891011121314151617181920@implementation Student//在动态方法中使用self则表示当前方法的调用对象- (void)test &amp;#123;&amp;#125;- (void)test2 &amp;#123;    [Student test3]; //可调用">
+<meta name="twitter:title" content="git基本工作流">
+<meta name="twitter:description" content="1、本地创建仓库两种方式：新建项目初始化仓库，已有项目克隆到本地 #初始化git init #映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射git remote add origin https://github.com/blazecake/JavaTest.gitgit remote add myprivate git@gitlab.com:Chau/J">
 
     
     <link rel="alternative" href="/atom.xml" title="MZ Blog" type="application/atom+xml">
@@ -81,21 +81,53 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/11/12/self关键字含义/" title="self关键字含义" itemprop="url">self关键字含义</a>
+      <a href="/2017/08/29/git基本工作流/" title="git基本工作流" itemprop="url">git基本工作流</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="MZ" target="_blank" itemprop="author">MZ</a>
 		
   <p class="article-time">
-    <time datetime="2015-11-12T09:02:23.000Z" itemprop="datePublished"> 发表于 2015-11-12</time>
+    <time datetime="2017-08-29T08:22:25.000Z" itemprop="datePublished"> 发表于 2017-08-29</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<p>self类似java中的this，this表示当前对象，但iOS中self即可表示对象，又可表示类<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@implementation Student</div><div class="line"></div><div class="line"><span class="comment">//在动态方法中使用self则表示当前方法的调用对象</span></div><div class="line">- (<span class="keyword">void</span>)test &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)test2 &#123;</div><div class="line">    [Student test3]; <span class="comment">//可调用类的静态方法</span></div><div class="line">    [self test];  <span class="comment">//self表示Student对象，可调用动态方法，不能调用静态方法</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//在静态方法中使用self则表示当前方法的调用类</span></div><div class="line">+ (<span class="keyword">void</span>)test3 &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+ (<span class="keyword">void</span>)test4 &#123;</div><div class="line">    [Student test3];</div><div class="line">    [self test3];  <span class="comment">//self表示Student类，可调用静态方法，不能调用动态方法</span></div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
-<p>即self代表着当前方法的调用者</p>
+		<h3 id="1、本地创建仓库"><a href="#1、本地创建仓库" class="headerlink" title="1、本地创建仓库"></a>1、本地创建仓库</h3><p>两种方式：新建项目初始化仓库，已有项目克隆到本地</p>
+<p>#初始化<br><em>git init</em></p>
+<p>#映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射<br><em>git remote add origin <a href="https://github.com/blazecake/JavaTest.git" target="_blank" rel="external">https://github.com/blazecake/JavaTest.git</a></em><br><em>git remote add myprivate git@gitlab.com:Chau/JavaTest.git</em></p>
+<p>#克隆远程仓库<br><em>git clone url</em> //克隆默认分支master<br><em>git clone url -b 分支名</em> //克隆指定分支</p>
+<h3 id="2、添加文件到版本控制、提交修改"><a href="#2、添加文件到版本控制、提交修改" class="headerlink" title="2、添加文件到版本控制、提交修改"></a>2、添加文件到版本控制、提交修改</h3><p><em>git add .</em> //将所有修改和新建的文件添加到暂存区<br><em>git add 文件名</em> //添加指定文件到暂存区，文件夹会添加该文件夹及所有子文件</p>
+<p>#提交修改，只会提交暂存区的文件，提交的修改只提交到了本地仓库。<br><em>git commit -m</em> “提交注释”</p>
+<p>#上面两步合并<br><em>git commit -am</em> “提交注释”</p>
+<p>与SVN不同的是，git提交的代码是本地仓库，而SVN提交只能提交到远程仓库，<br>所以在无网络时git可以把已完成的模块代码提交到本地，然后继续开发下一个模块。<br>SVN在无网络时不能提交，如果继续开发，将会使所有修改都混在一个提交里了。</p>
+<h3 id="3、比SVN多的一步，本地仓库“提交”同步到远程仓库"><a href="#3、比SVN多的一步，本地仓库“提交”同步到远程仓库" class="headerlink" title="3、比SVN多的一步，本地仓库“提交”同步到远程仓库"></a>3、比SVN多的一步，本地仓库“提交”同步到远程仓库</h3><p>#将当前分支推送到远程仓库对应分支，已指定了upstream<br><em>git push</em></p>
+<p>#将指定分支推送到origin远程仓库对应分支，若远程仓库没有会新建对应分支<br><em>git push -u origin 分支名</em>  -u指定当前分支的upstream</p>
+<p><strong>origin是远程仓库别名，无论是否添加多个远程仓库地址，该分支第一次push都需要指定upstream，此后可直接用上面的命令git push，推送的远程仓库是上次设置的upstream。</strong></p>
+<p>#将所有分支推送到远程仓库<br><em>git push -u origin –all</em></p>
+<h3 id="4、远程仓库新“提交”同步到本地仓库"><a href="#4、远程仓库新“提交”同步到本地仓库" class="headerlink" title="4、远程仓库新“提交”同步到本地仓库"></a>4、远程仓库新“提交”同步到本地仓库</h3><p>#拉取修改，不合并到本地仓库<br><em>git fetch</em></p>
+<p>#拉取修改，与本地仓库对应分支合并<br><em>git pull</em></p>
+<p>#拉取修改，与本地仓库对应分支合并，<br><em>git pull —rebase</em></p>
+<p>#拉取远程指定分支，并切换到该分支，一般用于远程新增的分支，而本地仓库没有<br><em>git checkout –track origin/分支名</em></p>
+<h3 id="5、分支管理"><a href="#5、分支管理" class="headerlink" title="5、分支管理"></a>5、分支管理</h3><p>#新建<br><em>git branch 分支名</em></p>
+<p>#切换<br><em>git checkout 分支名</em></p>
+<p>#新建并切换<br><em>git checkout -b 分支名</em></p>
+<p>#删除<br><em>git branch -d 分支名</em>  //删除本地仓库分支<br><em>git push origin –delete 分支名</em> //删除远程仓库分支</p>
+<p>#查看<br><em>git branch</em> //查看本地分支列表<br><em>git branch -r</em> //查看远程仓库分支列表</p>
+<p>#合并，将指定分支合并到当前分支<br><em>git merge 分支名</em> //两条分支并行合并，会增加一个合并节点<br><em>git rebase 分支名</em> //两条分支串行合并，指定分支的新提交节点在下边，当前分支新提交节点在上边。</p>
+<p><em>git rebase –abort</em> 终止rebase<br><em>git rebaes –continue</em> 解决冲突后继续rebase</p>
+<h3 id="6、其他功能"><a href="#6、其他功能" class="headerlink" title="6、其他功能"></a>6、其他功能</h3><p>#修改分支名<br><em>git branch -m 原分支名 新分支名</em></p>
+<p>#查看远程仓库地址<br><em>git remote -v</em></p>
+<p>#移除origin远程仓库映射<br><em>git remote rm origin</em></p>
+<p>#修改origin远程仓库映射<br><em>git remote set-url origin remote_git_address</em></p>
+<p>#区分文件名大小写<br><em>git mv –force myfile MyFile</em></p>
+<p>#贮藏未提交文件<br><em>git stash save “名称”</em></p>
+<p>#查看贮藏<br><em>git stash show</em></p>
+<p>#重置到某个提交节点<br><em>git reset –soft 节点串</em></p>
+<p>merge合并时显示message编辑处理<br>在英文输入法下按i键，底部显示插入状态，输入文本信息<br>按Esc退出编辑<br>英文输入法下输入:w 保存文本信息，底部提示“<em>*</em>已写入”<br>英文输入法下输入:q 退出编辑</p>
+<p>最后<br>任何命令参数都可以通过help查看<br>如:<br><em>git push –help</em><br><em>git rebase –help</em></p>
+<p><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Git参考</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -104,7 +136,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iOS/">iOS</a>
+  <span></span> <a href="/tags/Tools/">Tools</a>
   </div>
 
 </div>
@@ -113,7 +145,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://blazecake.github.io/2015/11/12/self关键字含义/" data-title="self关键字含义 | MZ Blog" data-tsina="3264880982" class="share clearfix">
+	  <div data-url="http://blazecake.github.io/2017/08/29/git基本工作流/" data-title="git基本工作流 | MZ Blog" data-tsina="3264880982" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -127,27 +159,19 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/11/12/构造方法和输出日志/" title="构造方法&amp;输出日志">
+ <a href="/2017/08/10/时间国际化/" title="时间国际化">
   <strong>上一篇：</strong><br/>
   <span>
-  构造方法&amp;输出日志</span>
+  时间国际化</span>
 </a>
 </div>
 
-
-<div class="next">
-<a href="/2015/11/13/空指针-野指针/"  title="空指针&amp;野指针">
- <strong>下一篇：</strong><br/> 
- <span>空指针&amp;野指针
-</span>
-</a>
-</div>
 
 </nav>
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/11/12/self关键字含义/" data-title="self关键字含义" data-url="http://blazecake.github.io/2015/11/12/self关键字含义/"></div>
+	<div class="ds-thread" data-thread-key="2017/08/29/git基本工作流/" data-title="git基本工作流" data-url="http://blazecake.github.io/2017/08/29/git基本工作流/"></div>
 </section>
 
 
@@ -157,7 +181,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、本地创建仓库"><span class="toc-number">1.</span> <span class="toc-text">1、本地创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、添加文件到版本控制、提交修改"><span class="toc-number">2.</span> <span class="toc-text">2、添加文件到版本控制、提交修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、比SVN多的一步，本地仓库“提交”同步到远程仓库"><span class="toc-number">3.</span> <span class="toc-text">3、比SVN多的一步，本地仓库“提交”同步到远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、远程仓库新“提交”同步到本地仓库"><span class="toc-number">4.</span> <span class="toc-text">4、远程仓库新“提交”同步到本地仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、分支管理"><span class="toc-number">5.</span> <span class="toc-text">5、分支管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、其他功能"><span class="toc-number">6.</span> <span class="toc-text">6、其他功能</span></a></li></ol>
  
   </div>
 
