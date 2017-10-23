@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://blazecake.github.io/2017/08/29/git基本工作流/index.html">
 <meta property="og:site_name" content="MZ Blog">
 <meta property="og:description" content="1、本地创建仓库两种方式：新建项目初始化仓库，已有项目克隆到本地 #初始化git init #映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射git remote add origin https://github.com/blazecake/JavaTest.gitgit remote add myprivate git@gitlab.com:Chau/J">
-<meta property="og:updated_time" content="2017-08-30T07:54:51.048Z">
+<meta property="og:updated_time" content="2017-10-23T03:01:40.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git基本工作流">
 <meta name="twitter:description" content="1、本地创建仓库两种方式：新建项目初始化仓库，已有项目克隆到本地 #初始化git init #映射到远程仓库，origin为仓库别名，你也可以指定其他名称；也可以添加多个远程仓库映射git remote add origin https://github.com/blazecake/JavaTest.gitgit remote add myprivate git@gitlab.com:Chau/J">
@@ -121,7 +121,7 @@
 <p>#查看远程仓库地址<br><em>git remote -v</em></p>
 <p>#移除origin远程仓库映射<br><em>git remote rm origin</em></p>
 <p>#修改origin远程仓库映射<br><em>git remote set-url origin 远程仓库地址</em></p>
-<p>#区分文件名大小写<br><em>git mv –force myfile MyFile</em></p>
+<p>#不小心类名写成了小写并已提交，改成大写也无法提交，可以使用修改文件名命令<br><em>git mv –force myfile MyFile</em></p>
 <p>#贮藏未提交文件<br><em>git stash save “名称”</em></p>
 <p>#查看贮藏<br><em>git stash show</em></p>
 <p>#重置到某个提交节点<br><em>git reset –soft 节点串</em></p>
